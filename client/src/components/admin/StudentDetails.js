@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 const StudentDetails = () => {
   const navigate = useNavigate();
   const [scholarship, setScholarship] = useState([]);
@@ -19,7 +20,7 @@ const StudentDetails = () => {
   const getScholarships = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/get-applications`
+        `${ngrok}/get-applications`
       );
       setScholarship(data.application);
     } catch (error) {
@@ -40,7 +41,7 @@ const StudentDetails = () => {
   const handleAccept = async () => {
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/set-status/${scholarship[selected]?._id}`,
+        `${ngrok}/set-status/${scholarship[selected]?._id}`,
         { status: "Accepted" }
       );
       alert(data.message);
@@ -55,7 +56,7 @@ const StudentDetails = () => {
   const handleReject = async () => {
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/set-status/${scholarship[selected]?._id}`,
+        `${ngrok}/set-status/${scholarship[selected]?._id}`,
         { status: "Rejected"}
       );
       alert(data.message);

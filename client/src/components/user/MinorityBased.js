@@ -3,6 +3,7 @@ import { Container, Card, Col, Button, Modal, Row } from "react-bootstrap";
 import {Link ,useNavigate } from "react-router-dom"
 import axios from "axios";
 import { UserContext } from "../../context/auth";
+import { ngrok } from "../../utils/ngrok";
 
 
 const MinorityBased = () => {
@@ -23,7 +24,7 @@ const MinorityBased = () => {
     const getScholarships = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/get-scholarships/${"minority-based"}`
+          `${ngrok}/get-scholarships/${"minority-based"}`
         );
         setScholarship(data.scholarship);
         

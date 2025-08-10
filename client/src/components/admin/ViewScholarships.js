@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Card, Col, Button, Modal, Row } from "react-bootstrap";
 import {Link ,useNavigate } from "react-router-dom"
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 
 const ViewScholarships = () => {
   
@@ -12,7 +13,7 @@ const ViewScholarships = () => {
   const getScholarships = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/get-scholarships`
+        `${ngrok}/get-scholarships`
       );
       setScholarship(data.scholarship);
     } catch (error) {
@@ -33,7 +34,7 @@ const ViewScholarships = () => {
   const handleDelete = async() => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:8080/get-scholarships/${scholarship[selected]?._id}`
+        `${ngrok}/get-scholarships/${scholarship[selected]?._id}`
       );
       alert(data.message);
       navigate("/adminDashboard");

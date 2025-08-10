@@ -20,11 +20,11 @@ const Home = () => {
                   className="btn view_more_btn"
                   style={{
                     backgroundColor: "#335eea",
-                    color: "#fff",
+                    color: "#000",
                     width: "200px",
                   }}
                 >
-                  view Scholarships
+                  View Scholarships
                   <i className="ri-arrow-right-line" />
                 </button></a>
               </div>

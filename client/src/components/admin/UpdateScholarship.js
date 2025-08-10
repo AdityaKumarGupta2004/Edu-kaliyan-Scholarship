@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -49,7 +50,7 @@ const UpdateScholarship = () => {
     try {
       // const id = params.id.toString();
       const { data } = await axios.get(
-        `http://localhost:8080/scholarship/${params.id}`
+        `${ngrok}/scholarship/${params.id}`
       );
       setScholarshipName(data.scholarship.scholarshipName);
       setDeadline(data.scholarship.deadline);
@@ -73,7 +74,7 @@ const UpdateScholarship = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:8080/get-scholarships/${id}`, {
+      const res = await axios.put(`${ngrok}/get-scholarships/${id}`, {
         scholarshipName,
         deadline,
         category,

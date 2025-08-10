@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/auth";
 import AdminRegistrationImage from "../../images/userRegistration.jpg"
+import { ngrok } from "../../utils/ngrok";
 const AdminLogin = () => {
   const { loggedIn,
     setLoggedIn,
@@ -20,7 +21,7 @@ const AdminLogin = () => {
   const PostData = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8080/adminlogin`, {
+      const res = await axios.post(`${ngrok}/adminlogin`, {
         email,
         password,
       });

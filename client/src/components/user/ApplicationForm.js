@@ -3,6 +3,7 @@ import { Col, Container, Row, Modal, Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/auth";
+import { ngrok } from "../../utils/ngrok";
 function MyModal(props) {
   return (
     <Modal
@@ -75,7 +76,7 @@ const ApplicationForm = () => {
     try {
       // const id = params.id.toString();
       const { data } = await axios.get(
-        `http://localhost:8080/scholarship/${params.id}`
+        `${ngrok}/scholarship/${params.id}`
       );
       // setUserId(data.scholarship._id);
       setScholarshipName(data.scholarship.scholarshipName);
@@ -99,7 +100,7 @@ const ApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8080/application-form`, {
+      const res = await axios.post(`${ngrok}/application-form`, {
         scholarshipName,
         category,
         amount,

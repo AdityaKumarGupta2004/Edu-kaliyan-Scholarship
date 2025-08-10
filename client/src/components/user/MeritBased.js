@@ -3,6 +3,7 @@ import { Container, Card, Col, Button, Modal, Row } from "react-bootstrap";
 import {Link ,useNavigate } from "react-router-dom"
 import axios from "axios";
 import { UserContext } from "../../context/auth";
+import { ngrok } from "../../utils/ngrok";
 
 
 const MeritBased = () => {
@@ -23,7 +24,7 @@ const MeritBased = () => {
     const getScholarships = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/get-scholarships/${"merit-based"}`
+          `${ngrok}/get-scholarships/${"merit-based"}`
         );
         setScholarship(data.scholarship);
         

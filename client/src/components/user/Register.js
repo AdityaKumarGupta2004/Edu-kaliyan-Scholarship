@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import userRegister from "../../images/userRegister.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Register = () => {
   const PostData = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8080/register`, {
+      const res = await axios.post(`${ngrok}/register`, {
         name,
         email,
         password,

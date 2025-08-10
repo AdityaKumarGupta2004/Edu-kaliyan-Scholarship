@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Button, Col, Card, Table ,Modal} from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
-  const params = useParams();
+  // const params = useParams();
   const [scholarship, setScholarship] = useState([]);
   const userEmail = localStorage.getItem("email");
 
@@ -13,7 +14,7 @@ const UserDashboard = () => {
   const getScholarships = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/get-user-applications/${userEmail}`
+        `${ngrok}/get-user-applications/${userEmail}`
       );
       setScholarship(data.application);
     } catch (error) {
@@ -33,7 +34,7 @@ const UserDashboard = () => {
   const handleDelete = async() => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:8080/get-applications/${scholarship[selected]?._id}`
+        `${ngrok}/get-applications/${scholarship[selected]?._id}`
       );
       alert(data.message);
       navigate("/user-dashboard");
@@ -46,11 +47,11 @@ const UserDashboard = () => {
 
 
   const date = new Date(scholarship.timestamp);
-  const timestampString = date.toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  // const timestampString = date.toLocaleDateString("en-IN", {
+  //   day: "numeric",
+  //   month: "short",
+  //   year: "numeric",
+  // });
 
   const [showModal, setShowModal] = useState(false);
   const [selected, setSelected] = useState(null);

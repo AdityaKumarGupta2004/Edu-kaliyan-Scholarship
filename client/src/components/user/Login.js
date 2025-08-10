@@ -4,6 +4,7 @@ import userLogin from "../../images/userLogin.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/auth";
+import { ngrok } from "../../utils/ngrok";
 
 const Login = () => {
 
@@ -21,7 +22,7 @@ const Login = () => {
   const PostData = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8080/login`, {
+      const res = await axios.post(`${ngrok}/login`, {
         email,
         password,
       });

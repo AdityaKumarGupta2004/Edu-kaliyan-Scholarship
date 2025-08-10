@@ -12,6 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import { ngrok } from "../../utils/ngrok";
 const PreviousApplicationDetails = () => {
   const navigate = useNavigate();
   const [scholarship, setScholarship] = useState([]);
@@ -32,7 +33,7 @@ const PreviousApplicationDetails = () => {
   const getPreviousApplication = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/get-previous-applications`
+        `${ngrok}/get-previous-applications`
       );
       setScholarship(data.application);
     } catch (error) {
@@ -55,7 +56,7 @@ const PreviousApplicationDetails = () => {
   const handleAccept = async() => {
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/set-status/${scholarship[selected]?._id}`,
+        `${ngrok}/set-status/${scholarship[selected]?._id}`,
         { status :"Accepted"}
       );
       alert(data.message);
@@ -70,7 +71,7 @@ const PreviousApplicationDetails = () => {
   const handleDelete = async () => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:8080/get-scholarships/${scholarship[selected]?._id}`
+        `${ngrok}/get-scholarships/${scholarship[selected]?._id}`
       );
       alert(data.message);
       navigate("/adminDashboard");

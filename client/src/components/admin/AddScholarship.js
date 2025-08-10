@@ -3,6 +3,7 @@ import { Modal, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../context/auth";
+import { ngrok } from "../../utils/ngrok";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -54,7 +55,7 @@ const AddScholarship = () => {
     e.preventDefault();
     try {
       if(adminLoggedIn){
-      const res = await axios.post(`http://localhost:8080/createscholarships`, {
+      const res = await axios.post(`${ngrok}/createscholarships`, {
         scholarshipName,
         deadline,
         category,

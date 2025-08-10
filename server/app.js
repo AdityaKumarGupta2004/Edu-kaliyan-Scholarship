@@ -65,7 +65,7 @@ const requireLogin = (req, res, next) => {
 };
 
 // Start server
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("🚀 Server is running on port 8080");
 });
 
