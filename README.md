@@ -60,5 +60,5 @@ We welcome contributions! If you have an idea for a new feature or have found a 
 So if you have liked this project then do consider giving it a star which will encourage me to build more of this kind of projects in future and also if you want youcan follow me on [Github](https://github.com/AdityaKumarGupta2004) 😊
 Keep Coding !
 
-<p align="right">~ Mayank Kumar</p>
+<p align="right">~ Aditya Kumar Gupta</p>
 
