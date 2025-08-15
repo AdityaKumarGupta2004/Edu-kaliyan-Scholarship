@@ -1,29 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "./auth";
-import { Routes, Route, redirect , Outlet} from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { UserContext } from "./auth"; // adjust path as needed
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [ok, setOk] = useState(false);
-  const {
-    loggedIn,
-    setLoggedIn,
-    user,
-    setUser,
-    adminLoggedIn,
-    setAdminLoggedIn,
-  } = useContext(UserContext);
+const AdminRoute = ({ children }) => {
+  const { adminLoggedIn } = useContext(UserContext);
 
-  useEffect(() => {
-    const authCheck =async () => {
-        // const res = axios()
-    }
-  },[])
+  if (!adminLoggedIn) {
+    // Not an admin — redirect to login or homepage
+    return <Navigate to="/admin_login" replace />;
+  }
 
-  return (
-    <>
-      ok? <Outlet/>:'spinner'
-      </>
-  );
+  return children;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

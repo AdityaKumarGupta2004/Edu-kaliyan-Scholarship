@@ -21,17 +21,26 @@ const Register = () => {
         password,
         confirmPassword,
       });
-      if(res && res.data.success ){
-        alert(res.data.message)
-        navigate("/login")
-        
-      }else{
-        alert(res.data.message)
+      if (res.data.success && res) {
+        alert(res.data.message);
+        navigate("/login");
+      } else {
+        alert(res.data.message);
       }
-
     } catch (error) {
       console.log(error);
-      alert(`Something went wrong : ${error}` );
+      alert(`Something went wrong : ${error}`);
+      console.log(error);
+      // Show backend error message if available
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        alert(error.response.data.message);
+      } else {
+        alert("Error logging in. Please try again.");
+      }
     }
   };
 

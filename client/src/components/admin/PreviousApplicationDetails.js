@@ -69,18 +69,24 @@ const PreviousApplicationDetails = () => {
   }
 
   const handleDelete = async () => {
-    try {
-      const { data } = await axios.delete(
-        `${ngrok}/get-scholarships/${scholarship[selected]?._id}`
-      );
-      alert(data.message);
-      navigate("/adminDashboard");
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-      alert("Something went wrong");
-    }
-  };
+  if (selected === null || !scholarship[selected]) {
+    alert("No application selected.");
+    return;
+  }
+  try {
+    console.log("Deleting application ID:", scholarship[selected]._id);
+    const { data } = await axios.delete(
+      `${ngrok}/get-applications/${scholarship[selected]._id}`
+    );
+    alert(data.message);
+    setScholarship(prev => prev.filter((_, i) => i !== selected));
+    setShowModal(false);
+    setSelected(null);
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong");
+  }
+};
 
   // const [id, setId] = useState();
   const [showModal, setShowModal] = useState(false);

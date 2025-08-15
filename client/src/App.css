@@ -11,18 +11,18 @@
   font-family: "Inter", sans-serif;
 }
 
-/* ==== CSS Variables ==== */
+/* ==== CSS Variables: Blue Palette ==== */
 :root {
-  --primary-color: #1e5631; /* Deep classic green */
-  --secondary-color: #4caf50; /* Mid green */
-  --link-color: #2e473b; /* Dark green-gray */
-  --btn-hover-color: #164220; /* Darker hover green */
-  --lg-heading: #102a18; /* Very deep green for headings */
-  --text-content: #5f7b68; /* Muted green-gray */
+  --primary-color: #00509d; /* Deep professional blue */
+  --secondary-color: #0077b6; /* Vibrant mid blue */
+  --link-color: #34495e; /* Muted dark gray-blue */
+  --btn-hover-color: #03417a; /* Darker hover blue */
+  --lg-heading: #1a237e; /* Very deep blue for headings */
+  --text-content: #546e7a; /* Muted gray for content */
   --fixed-header-height: 4.5rem;
-  --gradient-bg: linear-gradient(135deg, #d4fc79, #96e6a1); /* Classic greenish gradient */
-  --shadow-soft: 0 4px 12px rgba(30, 86, 49, 0.12); /* Subtle green shadow */
-  --shadow-medium: 0 6px 18px rgba(30, 86, 49, 0.18);
+  --gradient-bg: linear-gradient(135deg, #e0f7fa, #b3e5fc); /* Light blue gradient */
+  --shadow-soft: 0 4px 12px rgba(0, 80, 157, 0.12); /* Subtle blue shadow */
+  --shadow-medium: 0 6px 18px rgba(0, 80, 157, 0.18);
 }
 
 /* ==== Body & Global ==== */
@@ -40,6 +40,12 @@ ul li {
 
 a {
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--secondary-color);
 }
 
 .container {
@@ -92,11 +98,6 @@ a {
   color: var(--link-color);
   text-transform: capitalize;
   letter-spacing: 0.5px;
-  transition: color 0.3s ease;
-}
-
-.nav_menu_link:hover {
-  color: var(--secondary-color);
 }
 
 .toggle_btn {
@@ -104,6 +105,7 @@ a {
   font-weight: 600;
   color: var(--lg-heading);
   z-index: 4;
+  cursor: pointer;
 }
 
 .nav_menu,
@@ -172,7 +174,7 @@ a {
   margin-top: 1.5rem;
   font-size: 19px;
   line-height: 28px;
-  color: #243b26;
+  color: var(--text-content);
 }
 
 /* ==== Buttons ==== */
@@ -182,9 +184,8 @@ a {
   width: 100%;
 }
 
-.btn,
-.view_more_btn,
-.documentation_btn {
+/* Base Button Style */
+.btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,47 +194,40 @@ a {
   letter-spacing: 1px;
   transition: 0.4s;
   box-shadow: var(--shadow-soft);
+  height: 55px;
+  text-align: center;
+  font-weight: 500;
+  padding: 0 25px; /* Added padding for flexible width */
+  cursor: pointer;
 }
 
-.btn {
-  width: 110px;
-  height: 50px;
-  background-color: var(--primary-color);
+/* Primary Button Modifier */
+.btn--primary {
+  width: 280px;
+  background: var(--primary-color);
   color: #fff;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
+.btn--primary:hover,
+.btn--primary:focus {
   background-color: var(--btn-hover-color);
   box-shadow: var(--shadow-medium);
-}
-
-.view_more_btn {
-  width: 280px;
-  height: 55px;
-  margin-right: 10px;
-  color: #fff;
-  font-weight: 500;
-  background: var(--gradient-bg);
-  box-shadow: var(--shadow-soft);
-}
-
-.view_more_btn:hover {
-  box-shadow: var(--shadow-medium);
   transform: translateY(-3px);
 }
 
-.documentation_btn {
+/* Secondary Button Modifier */
+.btn--secondary {
   width: 150px;
-  height: 55px;
-  background-color: #e1f5e4;
+  background-color: #e1f5fe; /* Lighter shade of blue */
   color: var(--primary-color);
-  box-shadow: var(--shadow-soft);
+  margin-left: 10px;
 }
 
-.documentation_btn:hover {
-  background-color: #c8e6c9;
+.btn--secondary:hover,
+.btn--secondary:focus {
+  background-color: #b3e5fc;
   box-shadow: var(--shadow-medium);
+  transform: translateY(-3px);
 }
 
 /* ==== Grid Item 2 ==== */
@@ -275,7 +269,8 @@ a {
   transition: 0.3s ease;
 }
 
-.grid-col-item:hover {
+.grid-col-item:hover,
+.grid-col-item:focus-within { /* Added for accessibility */
   box-shadow: var(--shadow-medium);
   transform: translateY(-5px);
 }
@@ -296,7 +291,7 @@ a {
 .featured_info p {
   margin-top: 7px;
   font-weight: 400;
-  color: #243b26;
+  color: var(--text-content);
   line-height: 25px;
   font-size: 15.5px;
 }
@@ -380,9 +375,10 @@ footer {
     font-size: 35px;
   }
 
-  .view_more_btn {
+  .btn--primary {
     width: 140px;
     font-size: 13.5px;
+    height: 50px;
   }
 
   .grid-cols-3 {

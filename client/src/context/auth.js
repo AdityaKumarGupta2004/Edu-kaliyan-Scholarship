@@ -6,21 +6,25 @@ export const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [adminLoggedIn, setAdminLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+useEffect(() => {
+  try {
+    const loggedInData = localStorage.getItem("loggedIn");
+    const adminLoggedInData = localStorage.getItem("adminLoggedIn");
+    const userData = localStorage.getItem("user");
 
-  useEffect(() => {
-    const data = localStorage.getItem("loggedIn");
-    const adminLogin = localStorage.getItem("adminLoggedIn");
-    const user = localStorage.getItem("user");
-    if (data) {
-      setLoggedIn(JSON.parse(data));
+    if (loggedInData !== null) {
+      setLoggedIn(JSON.parse(loggedInData));
     }
-    if (adminLogin) {
-      setLoggedIn(JSON.parse(adminLogin));
+    if (adminLoggedInData !== null) {
+      setAdminLoggedIn(JSON.parse(adminLoggedInData));
     }
-    if (user) {
-      setUser(JSON.parse(user));
+    if (userData !== null) {
+      setUser(JSON.parse(userData));
     }
-  }, []);
+  } catch (error) {
+    console.error("Error parsing localStorage data:", error);
+  }
+}, []);
 
   //   const login = (user) => {
   //     setLoggedIn(true);
